@@ -1,0 +1,62 @@
+Arguments: 
+  /home/annisatahira/.nvm/versions/node/v14.4.0/bin/node /usr/local/bin/yarn add ,
+
+PATH: 
+  /home/annisatahira/.local/bin:/home/annisatahira/.nvm/versions/node/v14.4.0/bin:/home/annisatahira/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  14.4.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/,: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66987:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+
+npm manifest: 
+  {
+    "name": "rock-scissors-paper-game",
+    "version": "1.0.0",
+    "description": "mini project rock scissors paper game",
+    "main": "index.js",
+    "repository": "https://github.com/annisatahira/rock-scissors-paper-game.git",
+    "author": "annisatahira <annisatahira999@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+      "@babel/cli": "^7.10.1",
+      "@babel/core": "^7.10.3",
+      "@babel/plugin-proposal-class-properties": "^7.10.1",
+      "@babel/preset-env": "^7.10.3",
+      "@babel/preset-react": "^7.10.1",
+      "babel-loader": "^8.1.0",
+      "css-loader": "^3.6.0",
+      "node-sass": "^4.14.1",
+      "react": "^16.13.1",
+      "react-dom": "^16.13.1",
+      "react-modal": "^3.11.2",
+      "sass-loader": "^8.0.2",
+      "style-loader": "^1.2.1",
+      "webpack": "^4.43.0",
+      "webpack-cli": "^3.3.12",
+      "webpack-dev-server": "^3.11.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
