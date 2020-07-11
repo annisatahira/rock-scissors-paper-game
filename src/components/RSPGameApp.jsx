@@ -3,12 +3,14 @@ import Header from "./Header.jsx";
 import PlayerImage from "./PlayerImage.jsx";
 import Choice from "./Choice.jsx";
 
-const weapons = ["rock", "scissor", "paper"];
+const weapons = ["rock", "scissors", "paper"];
 
 class RSPGameApp extends React.Component {
   state = {
     weaponPlayerOne: undefined,
     weaponPlayerTwo: undefined,
+    scorePlayerOne: 0,
+    scorePlayerTwo: 0,
   };
 
   handleSelectWeaponPlayerOne = (weapon) => {
@@ -23,7 +25,7 @@ class RSPGameApp extends React.Component {
     });
   };
 
-  handleWinner = () => {
+  handleCountScore = () => {
     const { weaponPlayerOne, weaponPlayerTwo } = this.state;
 
     if (weaponPlayerOne === weaponPlayerTwo) {
@@ -34,21 +36,41 @@ class RSPGameApp extends React.Component {
       (weaponPlayerOne === "paper" && weaponPlayerTwo === "rock")
     ) {
       console.log("Player One Win");
+      this.setState((prevCount) => ({
+        scorePlayerOne: prevCount.scorePlayerOne + 1,
+      }));
     } else {
       console.log("Player Two Win");
+      this.setState((prevCount) => ({
+        scorePlayerTwo: prevCount.scorePlayerTwo + 1,
+      }));
     }
   };
 
-  tes = () => {
-    console.log(this.state.weaponPlayerOne);
+  handleFinalWinner = () => {
+    let countPlayerOne = this.state.scorePlayerOne;
+    let countPlayerTwo = this.state.scorePlayerTwo;
+
+    if (countPlayerOne === 5) {
+      alert("Player One Winner");
+    } else if (countPlayerTwo === 5) {
+      alert("Player Two Winner");
+    }
   };
 
   render() {
+    const {
+      weaponPlayerOne,
+      weaponPlayerTwo,
+      scorePlayerOne,
+      scorePlayerTwo,
+    } = this.state;
+
     return (
       <div>
         {/* Player One */}
-        <Header playerName={this.props.playerName} totalWin={this.state.wins} />
-        <PlayerImage image={this.state.weaponPlayerOne} />
+        <Header playerName={this.props.playerName} totalWin={scorePlayerOne} />
+        <PlayerImage image={weaponPlayerOne} />
         {weapons.map((weapon) => (
           <Choice
             key={weapon}
@@ -58,8 +80,8 @@ class RSPGameApp extends React.Component {
         ))}
 
         {/* Player Two */}
-        <Header playerName={this.props.playerName} totalWin={this.state.wins} />
-        <PlayerImage image={this.state.weaponPlayerTwo} />
+        <Header playerName={this.props.playerName} totalWin={scorePlayerTwo} />
+        <PlayerImage image={weaponPlayerTwo} />
         {weapons.map((weapon) => (
           <Choice
             key={weapon}
@@ -67,7 +89,10 @@ class RSPGameApp extends React.Component {
             handleSelectWeapon={() => this.handleSelectWeaponPlayerTwo(weapon)}
           />
         ))}
-        <button onClick={this.handleWinner}>Run</button>
+        {weaponPlayerOne !== undefined && weaponPlayerTwo !== undefined && (
+          <button onClick={this.handleCountScore}>Run</button>
+        )}
+        <h1>tes{this.handleFinalWinner()}</h1>
       </div>
     );
   }
