@@ -3,35 +3,71 @@ import Header from "./Header.jsx";
 import PlayerImage from "./PlayerImage.jsx";
 import Choice from "./Choice.jsx";
 
+const weapons = ["rock", "scissor", "paper"];
+
 class RSPGameApp extends React.Component {
   state = {
-    selectedChoice: 0,
+    weaponPlayerOne: undefined,
+    weaponPlayerTwo: undefined,
   };
 
-  handleSelectWeapon = (weapon) => {
+  handleSelectWeaponPlayerOne = (weapon) => {
     this.setState({
-      selectedChoice: weapon,
+      weaponPlayerOne: weapon,
     });
   };
 
-  handleCalculateWin = () => {
-    this.setState(() => console.log("working!"));
+  handleSelectWeaponPlayerTwo = (weapon) => {
+    this.setState({
+      weaponPlayerTwo: weapon,
+    });
+  };
+
+  handleWinner = () => {
+    const { weaponPlayerOne, weaponPlayerTwo } = this.state;
+
+    if (weaponPlayerOne === weaponPlayerTwo) {
+      console.log("Oops it's a Tie!");
+    } else if (
+      (weaponPlayerOne === "rock" && weaponPlayerTwo === "scissors") ||
+      (weaponPlayerOne === "scissors" && weaponPlayerTwo === "paper") ||
+      (weaponPlayerOne === "paper" && weaponPlayerTwo === "rock")
+    ) {
+      console.log("Player One Win");
+    } else {
+      console.log("Player Two Win");
+    }
+  };
+
+  tes = () => {
+    console.log(this.state.weaponPlayerOne);
   };
 
   render() {
-    const playerName = "One";
-    const weapons = ["rock", "scissor", "paper"];
     return (
       <div>
-        <Header playerName={playerName} totalWin={this.state.wins} />
-        <PlayerImage image={this.state.selectedChoice} />
+        {/* Player One */}
+        <Header playerName={this.props.playerName} totalWin={this.state.wins} />
+        <PlayerImage image={this.state.weaponPlayerOne} />
         {weapons.map((weapon) => (
           <Choice
             key={weapon}
             weapon={weapon}
-            handleSelectWeapon={() => this.handleSelectWeapon(weapon)}
+            handleSelectWeapon={() => this.handleSelectWeaponPlayerOne(weapon)}
           />
         ))}
+
+        {/* Player Two */}
+        <Header playerName={this.props.playerName} totalWin={this.state.wins} />
+        <PlayerImage image={this.state.weaponPlayerTwo} />
+        {weapons.map((weapon) => (
+          <Choice
+            key={weapon}
+            weapon={weapon}
+            handleSelectWeapon={() => this.handleSelectWeaponPlayerTwo(weapon)}
+          />
+        ))}
+        <button onClick={this.handleWinner}>Run</button>
       </div>
     );
   }
