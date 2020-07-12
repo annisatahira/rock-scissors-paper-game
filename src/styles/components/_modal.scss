@@ -32,13 +32,14 @@
   color: $soft-pink;
 }
 
-.modal__result {
-  color: $soft-pink;
+.text-button__welcome {
+  cursor: pointer;
+  color: white;
+  background: $soft-pink;
+
+  padding: 10px;
 }
 
-.modal__body {
-  margin: 0 0 $l-size 0;
-  font-weight: 300;
-  font-size: 2rem;
-  word-break: break-all;
+.modal__result {
+  color: $soft-pink;
 }

@@ -3,6 +3,7 @@ import Header from "./Header.jsx";
 import PlayerImage from "./PlayerImage.jsx";
 import Choice from "./Choice.jsx";
 import ResultModal from "./ResultModal.jsx";
+import WelcomeModal from "./WelcomeModal.jsx";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -17,7 +18,7 @@ class RSPGameApp extends React.Component {
     scoreP1: 0,
     scoreP2: 0,
     message: "",
-    modalIsOpen: false,
+    welcomeModal: true,
     setIsOpen: false,
   };
 
@@ -30,6 +31,12 @@ class RSPGameApp extends React.Component {
   handleCloseModal = () => {
     this.setState({
       setIsOpen: false,
+    });
+  };
+
+  handleCloseWelcome = () => {
+    this.setState({
+      welcomeModal: false,
     });
   };
 
@@ -251,6 +258,11 @@ class RSPGameApp extends React.Component {
             </Grid>
           </Grid>
         </div>
+
+        <WelcomeModal
+          welcomeModal={this.state.welcomeModal}
+          handleCloseWelcome={this.handleCloseWelcome}
+        />
 
         <ResultModal
           modalIsOpen={this.state.setIsOpen}
