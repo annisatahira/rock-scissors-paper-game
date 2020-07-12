@@ -5,7 +5,6 @@ import Choice from "./Choice.jsx";
 import ResultModal from "./ResultModal.jsx";
 import WinnerModal from "./WinnerModal.jsx";
 
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 const weapons = ["rock", "scissors", "paper"];
@@ -192,11 +191,11 @@ class RSPGameApp extends React.Component {
       <div className="container">
         <div>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={6} className="player">
               {/* Player One */}
               <Header playerName={"Player One"} totalWin={scoreP1} />
 
-              <PlayerImage image={weaponP1} />
+              {/* <PlayerImage image={weaponP1} /> */}
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={4}>
                   {weapons.map((weapon) => (
@@ -214,7 +213,7 @@ class RSPGameApp extends React.Component {
             <Grid item xs={6}>
               {/* Player Two */}
               <Header playerName={"Player Two"} totalWin={scoreP2} />
-              <PlayerImage image={weaponP2} />
+              {/* <PlayerImage image={weaponP2} /> */}
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={4}>
                   {weapons.map((weapon) => (
@@ -230,12 +229,16 @@ class RSPGameApp extends React.Component {
               </Grid>
             </Grid>
           </Grid>
+          <Grid container spacing={1}>
+            <Grid container item xs={12} justify="center" spacing={1}>
+              {weaponP1 !== undefined && weaponP2 !== undefined && (
+                <button onClick={this.handleLoadingGame}>Run Winner</button>
+              )}
+            </Grid>
+          </Grid>
         </div>
 
-        {/* {weaponP1 !== undefined && weaponP2 !== undefined && (
-          <button onClick={this.handleLoadingGame}>Run Winner</button>
-        )}
-        <WinnerModal
+        {/* <WinnerModal
           message={this.state.message}
           winner={this.state.winner}
           handlePlayAgain={this.handlePlayAgain}

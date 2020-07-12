@@ -1,0 +1,16 @@
+button {
+  cursor: pointer;
+  height: 150px;
+  width: 150px;
+  margin-top: 10rem;
+  border-radius: 50%;
+  border: none;
+  background-color: $soft-green;
+  color: $off-white;
+  font-size: $m-size;
+  outline: none;
+}
+
+button:disabled {
+  cursor: default;
+}

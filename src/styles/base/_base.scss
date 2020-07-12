@@ -3,37 +3,17 @@ html {
 }
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: $main-font;
   font-size: $s-size;
 }
 
 h1,
 h2,
 span {
-  color: $dark-blue;
+  color: $soft-green;
 }
 
-button {
-  cursor: pointer;
-  height: 100px;
-  width: 100px;
-  padding: 4rem;
-  margin: 1rem;
-  // background-image: url("/images/paper.png");
-  // background-size: 100%;
-  // background-repeat: no-repeat;
-
-  border-color: blueviolet;
-  border-radius: 50%;
-}
-
-img {
-  height: 100px;
-  width: 100px;
-  cursor: pointer;
-  margin: 1rem;
-}
-
-button:disabled {
-  cursor: default;
+h2,
+span {
+  color: $soft-pink;
 }
