@@ -18,12 +18,17 @@
 }
 
 .modal {
-  background: $soft-pink;
+  background: white;
   color: white;
-  max-width: 30rem;
+  max-width: 60rem;
   outline: none;
   padding: $m-size;
   text-align: center;
+  border: 1px groove $soft-pink;
+}
+
+.text-button {
+  cursor: pointer;
 }
 
 .modal__title {

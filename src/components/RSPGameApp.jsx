@@ -19,6 +19,20 @@ class RSPGameApp extends React.Component {
     scoreP2: 0,
     message: "",
     winner: "",
+    modalIsOpen: false,
+    setIsOpen: false,
+  };
+
+  handleOpenModal = () => {
+    this.setState({
+      setIsOpen: true,
+    });
+  };
+
+  handleCloseModal = () => {
+    this.setState({
+      setIsOpen: false,
+    });
   };
 
   handleSelectWeaponP1 = (weapon) => {
@@ -56,6 +70,10 @@ class RSPGameApp extends React.Component {
   };
 
   handleRunGame = () => {
+    this.setState({
+      setIsOpen: true,
+    });
+
     const { weaponP1, weaponP2 } = this.state;
 
     if (weaponP1 === weaponP2) {
@@ -235,9 +253,13 @@ class RSPGameApp extends React.Component {
             </Grid>
           </Grid>
         </div>
+
         <ResultModal
+          modalIsOpen={this.state.setIsOpen}
+          message={this.state.message}
           weaponChoiceP1={weaponResultP1}
           weaponChoiceP2={weaponResultP2}
+          handleCloseModal={this.handleCloseModal}
         />
         {/* <WinnerModal
           message={this.state.message}
