@@ -25,6 +25,14 @@ class RSPGameApp extends React.Component {
     });
   };
 
+  handleOtomomaticWeapon = () => {
+    let weapon = setTimeout(() => {
+      this.setState({
+        weaponPlayerOne: weapons[Math.floor(Math.random() * weapons.length)],
+      });
+    }, 3000);
+  };
+
   handleCountScore = () => {
     const { weaponPlayerOne, weaponPlayerTwo } = this.state;
 
@@ -70,7 +78,11 @@ class RSPGameApp extends React.Component {
       <div>
         {/* Player One */}
         <Header playerName={this.props.playerName} totalWin={scorePlayerOne} />
+        {weaponPlayerOne === undefined && (
+          <h1>{this.handleOtomomaticWeapon()}</h1>
+        )}
         <PlayerImage image={weaponPlayerOne} />
+
         {weapons.map((weapon) => (
           <Choice
             key={weapon}
@@ -97,9 +109,5 @@ class RSPGameApp extends React.Component {
     );
   }
 }
-
-RSPGameApp.defaultProps = {
-  wins: 0,
-};
 
 export default RSPGameApp;
