@@ -8,6 +8,7 @@ class WinnerModal extends React.Component {
     return (
       <div>
         <h1>{this.props.message}</h1>
+        <h2>{this.props.winner}</h2>
       </div>
     );
   }

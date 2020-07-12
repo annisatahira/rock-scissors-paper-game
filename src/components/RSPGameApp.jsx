@@ -15,6 +15,8 @@ class RSPGameApp extends React.Component {
     weaponResultP2: undefined,
     scoreP1: 0,
     scoreP2: 0,
+    message: "",
+    winner: "",
   };
 
   handleSelectWeaponP1 = (weapon) => {
@@ -94,6 +96,8 @@ class RSPGameApp extends React.Component {
         }));
       }
     }, 3000);
+
+    this.handleFinalWinner();
   };
 
   handleRemoveWeapon = () => {
@@ -119,14 +123,16 @@ class RSPGameApp extends React.Component {
     count = countP1 + countP2;
     console.log(count);
 
-    if (count === 5 || countP1 === 3 || countP2 === 3) {
+    if (count <= 5) {
       if (countP1 === 3) {
-        alert("Player One Winner");
-      } else {
-        alert("Player Two Winner");
+        this.setState(() => ({
+          winner: "Player One Win Game",
+        }));
+      } else if (countP2 === 3) {
+        this.setState(() => ({
+          winner: "Player Two Win The Game",
+        }));
       }
-
-      count = 0;
     }
   };
 
@@ -188,7 +194,7 @@ class RSPGameApp extends React.Component {
           weaponChoiceP1={weaponResultP1}
           weaponChoiceP2={weaponResultP2}
         />
-        <h1>tes{this.handleFinalWinner()}</h1>
+        {/* <h1>{this.handleFinalWinner()}</h1> */}
       </div>
     );
   }
