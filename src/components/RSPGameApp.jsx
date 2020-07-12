@@ -5,6 +5,9 @@ import Choice from "./Choice.jsx";
 import ResultModal from "./ResultModal.jsx";
 import WinnerModal from "./WinnerModal.jsx";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+
 const weapons = ["rock", "scissors", "paper"];
 
 class RSPGameApp extends React.Component {
@@ -186,30 +189,50 @@ class RSPGameApp extends React.Component {
     } = this.state;
 
     return (
-      <div>
-        {/* Player One */}
-        <Header playerName={this.props.playerName} totalWin={scoreP1} />
+      <div className="container">
+        <div>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              {/* Player One */}
+              <Header playerName={"Player One"} totalWin={scoreP1} />
 
-        <PlayerImage image={weaponP1} />
-        {weapons.map((weapon) => (
-          <Choice
-            key={weapon}
-            weapon={weapon}
-            handleSelectWeapon={() => this.handleSelectWeaponP1(weapon)}
-          />
-        ))}
+              <PlayerImage image={weaponP1} />
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={4}>
+                  {weapons.map((weapon) => (
+                    <Choice
+                      key={weapon}
+                      weapon={weapon}
+                      handleSelectWeapon={() =>
+                        this.handleSelectWeaponP1(weapon)
+                      }
+                    />
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={6}>
+              {/* Player Two */}
+              <Header playerName={"Player Two"} totalWin={scoreP2} />
+              <PlayerImage image={weaponP2} />
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={4}>
+                  {weapons.map((weapon) => (
+                    <Choice
+                      key={weapon}
+                      weapon={weapon}
+                      handleSelectWeapon={() =>
+                        this.handleSelectWeaponP2(weapon)
+                      }
+                    />
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </div>
 
-        {/* Player Two */}
-        <Header playerName={this.props.playerName} totalWin={scoreP2} />
-        <PlayerImage image={weaponP2} />
-        {weapons.map((weapon) => (
-          <Choice
-            key={weapon}
-            weapon={weapon}
-            handleSelectWeapon={() => this.handleSelectWeaponP2(weapon)}
-          />
-        ))}
-        {weaponP1 !== undefined && weaponP2 !== undefined && (
+        {/* {weaponP1 !== undefined && weaponP2 !== undefined && (
           <button onClick={this.handleLoadingGame}>Run Winner</button>
         )}
         <WinnerModal
@@ -220,8 +243,7 @@ class RSPGameApp extends React.Component {
         <ResultModal
           weaponChoiceP1={weaponResultP1}
           weaponChoiceP2={weaponResultP2}
-        />
-        {/* <h1>{this.handleFinalWinner()}</h1> */}
+        /> */}
       </div>
     );
   }
