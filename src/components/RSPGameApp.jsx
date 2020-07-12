@@ -215,8 +215,12 @@ class RSPGameApp extends React.Component {
           <Grid container spacing={2}>
             <Grid item xs={6} className="player">
               <Header playerName={"Player One"} totalWin={scoreP1} />
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={4}>
+                  <PlayerImage image={weaponP1} />
+                </Grid>
+              </Grid>
 
-              <PlayerImage image={weaponP1} />
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={4}>
                   {weapons.map((weapon) => (
@@ -233,7 +237,11 @@ class RSPGameApp extends React.Component {
             </Grid>
             <Grid item xs={6}>
               <Header playerName={"Player Two"} totalWin={scoreP2} />
-              <PlayerImage image={weaponP2} />
+              <Grid item xs={12}>
+                <Grid container justify="center" spacing={4}>
+                  <PlayerImage image={weaponP2} />
+                </Grid>
+              </Grid>
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={4}>
                   {weapons.map((weapon) => (
