@@ -17,13 +17,14 @@ class RSPGameApp extends React.Component {
     this.setState({
       weaponPlayerOne: weapon,
     });
-    clearTimeout(this.timer);
+    clearTimeout(this.timerPlayerOne);
   };
 
   handleSelectWeaponPlayerTwo = (weapon) => {
     this.setState({
       weaponPlayerTwo: weapon,
     });
+    clearTimeout(this.timerPlayerTwo);
   };
 
   handleCountScore = () => {
@@ -48,6 +49,21 @@ class RSPGameApp extends React.Component {
     }
 
     this.handleRemoveWeapon();
+    setTimeout(() => {
+      if (this.state.weaponPlayerTwo === undefined) {
+        this.setState(() => ({
+          weaponPlayerTwo: weapons[Math.floor(Math.random() * weapons.length)],
+        }));
+      }
+    }, 3000);
+
+    setTimeout(() => {
+      if (this.state.weaponPlayerOne === undefined) {
+        this.setState(() => ({
+          weaponPlayerOne: weapons[Math.floor(Math.random() * weapons.length)],
+        }));
+      }
+    }, 3000);
   };
 
   handleRemoveWeapon = () => {
@@ -55,6 +71,7 @@ class RSPGameApp extends React.Component {
       weaponPlayerOne: undefined,
       weaponPlayerTwo: undefined,
     }));
+    console.log(this.state.weaponPlayerOne);
   };
 
   handleRemoveScore = () => {
@@ -87,7 +104,6 @@ class RSPGameApp extends React.Component {
     if (this.state.weaponPlayerOne === undefined) {
       this.setState(() => ({
         weaponPlayerOne: weapons[Math.floor(Math.random() * weapons.length)],
-        weaponPlayerTwo: weapons[Math.floor(Math.random() * weapons.length)],
       }));
     }
   }, 3000);
