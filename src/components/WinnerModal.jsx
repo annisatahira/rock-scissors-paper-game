@@ -1,18 +1,26 @@
 import React from "react";
-// import Modal from "react-modal";
+import Modal from "react-modal";
 
-// Modal.setAppElement(document.getElementById("app"));
+Modal.setAppElement(document.getElementById("app"));
 
-class WinnerModal extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.message}</h1>
-        <h2>{this.props.winner}</h2>
-        <button onClick={this.props.handlePlayAgain}>Play Again</button>
-      </div>
-    );
-  }
-}
+const WinnerModal = (props) => (
+  // <Modal
+  //   isOpen={true}
+  //   contentLabel="Winner Modal"
+  //   onRequestClose={props.handlePlayAgain}
+  //   closeTimeoutMS={200}
+  //   className="modal"
+  // >
+  //   <h1>{props.message}</h1>
+  //   <h2>{props.winner}</h2>
+  //   <button onClick={props.handlePlayAgain}>Play Again</button>
+
+  // </Modal>
+  <div>
+    <h1>{props.message}</h1>
+    <h2>{props.winner}</h2>
+    <button onClick={props.handlePlayAgain}>Play Again</button>
+  </div>
+);
 
 export default WinnerModal;

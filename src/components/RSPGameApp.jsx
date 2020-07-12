@@ -44,7 +44,7 @@ class RSPGameApp extends React.Component {
         weaponResultP1: weapons[Math.floor(Math.random() * weapons.length)],
         weaponResultP2: weapons[Math.floor(Math.random() * weapons.length)],
       });
-      if (counter > 5) {
+      if (counter > 10) {
         clearInterval(gameInterval);
         this.setState({
           weaponResultP1: this.state.weaponP1,
@@ -192,10 +192,9 @@ class RSPGameApp extends React.Component {
         <div>
           <Grid container spacing={2}>
             <Grid item xs={6} className="player">
-              {/* Player One */}
               <Header playerName={"Player One"} totalWin={scoreP1} />
 
-              {/* <PlayerImage image={weaponP1} /> */}
+              <PlayerImage image={weaponP1} />
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={4}>
                   {weapons.map((weapon) => (
@@ -211,9 +210,8 @@ class RSPGameApp extends React.Component {
               </Grid>
             </Grid>
             <Grid item xs={6}>
-              {/* Player Two */}
               <Header playerName={"Player Two"} totalWin={scoreP2} />
-              {/* <PlayerImage image={weaponP2} /> */}
+              <PlayerImage image={weaponP2} />
               <Grid item xs={12}>
                 <Grid container justify="center" spacing={4}>
                   {weapons.map((weapon) => (
@@ -237,15 +235,14 @@ class RSPGameApp extends React.Component {
             </Grid>
           </Grid>
         </div>
-
+        <ResultModal
+          weaponChoiceP1={weaponResultP1}
+          weaponChoiceP2={weaponResultP2}
+        />
         {/* <WinnerModal
           message={this.state.message}
           winner={this.state.winner}
           handlePlayAgain={this.handlePlayAgain}
-        />
-        <ResultModal
-          weaponChoiceP1={weaponResultP1}
-          weaponChoiceP2={weaponResultP2}
         /> */}
       </div>
     );
