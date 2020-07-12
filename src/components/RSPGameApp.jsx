@@ -161,8 +161,7 @@ class RSPGameApp extends React.Component {
     this.setState(() => ({
       weaponP1: undefined,
       weaponP2: undefined,
-      weaponResultP1: undefined,
-      weaponResultP2: undefined,
+
       scoreP1: 0,
       scoreP2: 0,
     }));
