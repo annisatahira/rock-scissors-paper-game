@@ -82,19 +82,11 @@ class RSPGameApp extends React.Component {
 
     this.handleRemoveWeapon();
     setTimeout(() => {
-      if (this.state.weaponP2 === undefined) {
-        this.setState(() => ({
-          weaponP2: weapons[Math.floor(Math.random() * weapons.length)],
-        }));
-      }
+      this.handleTimeOutP1();
     }, 3000);
 
     setTimeout(() => {
-      if (this.state.weaponP1 === undefined) {
-        this.setState(() => ({
-          weaponP1: weapons[Math.floor(Math.random() * weapons.length)],
-        }));
-      }
+      this.handleTimeOutP2();
     }, 3000);
 
     this.handleFinalWinner();
@@ -123,33 +115,64 @@ class RSPGameApp extends React.Component {
     count = countP1 + countP2;
     console.log(count);
 
-    if (count <= 5) {
-      if (countP1 === 3) {
-        this.setState(() => ({
-          winner: "Player One Win Game",
-        }));
-      } else if (countP2 === 3) {
-        this.setState(() => ({
-          winner: "Player Two Win The Game",
-        }));
-      }
+    if (countP1 === 3) {
+      this.setState(() => ({
+        winner: "Player One Win Game",
+      }));
+    } else if (countP2 === 3) {
+      this.setState(() => ({
+        winner: "Player Two Win The Game",
+      }));
+    }
+
+    if (count === 5 || countP1 === 3 || countP1 === 3) {
+      this.handlePlayAgain();
     }
   };
 
-  timerP1 = setTimeout(() => {
+  handlePlayAgain = () => {
+    this.setState(() => ({
+      weaponP1: undefined,
+      weaponP2: undefined,
+      weaponResultP1: undefined,
+      weaponResultP2: undefined,
+      scoreP1: 0,
+      scoreP2: 0,
+      message: "",
+      winner: "",
+    }));
+
+    setTimeout(() => {
+      this.handleTimeOutP1();
+    }, 3000);
+
+    setTimeout(() => {
+      this.handleTimeOutP2();
+    }, 3000);
+  };
+
+  handleTimeOutP1 = () => {
     if (this.state.weaponP1 === undefined) {
       this.setState(() => ({
         weaponP1: weapons[Math.floor(Math.random() * weapons.length)],
       }));
     }
-  }, 3000);
+  };
 
-  timerP2 = setTimeout(() => {
+  handleTimeOutP2 = () => {
     if (this.state.weaponP2 === undefined) {
       this.setState(() => ({
         weaponP2: weapons[Math.floor(Math.random() * weapons.length)],
       }));
     }
+  };
+
+  timerP1 = setTimeout(() => {
+    this.handleTimeOutP1();
+  }, 3000);
+
+  timerP2 = setTimeout(() => {
+    this.handleTimeOutP2();
   }, 3000);
 
   render() {
@@ -189,7 +212,11 @@ class RSPGameApp extends React.Component {
         {weaponP1 !== undefined && weaponP2 !== undefined && (
           <button onClick={this.handleLoadingGame}>Run Winner</button>
         )}
-        <WinnerModal message={this.state.message} />
+        <WinnerModal
+          message={this.state.message}
+          winner={this.state.winner}
+          handlePlayAgain={this.handlePlayAgain}
+        />
         <ResultModal
           weaponChoiceP1={weaponResultP1}
           weaponChoiceP2={weaponResultP2}
