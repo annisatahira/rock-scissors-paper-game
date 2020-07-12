@@ -17,7 +17,6 @@ class RSPGameApp extends React.Component {
     this.setState({
       weaponPlayerOne: weapon,
     });
-
     clearTimeout(this.timer);
   };
 
@@ -47,24 +46,58 @@ class RSPGameApp extends React.Component {
         scorePlayerTwo: prevCount.scorePlayerTwo + 1,
       }));
     }
+
+    this.handleRemoveWeapon();
+  };
+
+  handleRemoveWeapon = () => {
+    this.setState(() => ({
+      weaponPlayerOne: undefined,
+      weaponPlayerTwo: undefined,
+    }));
+  };
+
+  handleRemoveScore = () => {
+    this.setState(() => ({
+      scorePlayerOne: 0,
+      scorePlayerTwo: 0,
+    }));
   };
 
   handleFinalWinner = () => {
+    let count = 0;
     let countPlayerOne = this.state.scorePlayerOne;
     let countPlayerTwo = this.state.scorePlayerTwo;
 
-    if (countPlayerOne === 5) {
-      alert("Player One Winner");
-    } else if (countPlayerTwo === 5) {
-      alert("Player Two Winner");
+    count = countPlayerOne + countPlayerTwo;
+    console.log(count);
+
+    if (count === 5 || countPlayerOne === 3 || countPlayerTwo === 3) {
+      if (countPlayerOne === 3) {
+        alert("Player One Winner");
+      } else {
+        alert("Player Two Winner");
+      }
+
+      count = 0;
     }
   };
 
-  timer = setTimeout(() => {
-    this.setState(() => ({
-      weaponPlayerOne: weapons[Math.floor(Math.random() * weapons.length)],
-      weaponPlayerTwo: weapons[Math.floor(Math.random() * weapons.length)],
-    }));
+  timerPlayerOne = setTimeout(() => {
+    if (this.state.weaponPlayerOne === undefined) {
+      this.setState(() => ({
+        weaponPlayerOne: weapons[Math.floor(Math.random() * weapons.length)],
+        weaponPlayerTwo: weapons[Math.floor(Math.random() * weapons.length)],
+      }));
+    }
+  }, 3000);
+
+  timerPlayerTwo = setTimeout(() => {
+    if (this.state.weaponPlayerTwo === undefined) {
+      this.setState(() => ({
+        weaponPlayerTwo: weapons[Math.floor(Math.random() * weapons.length)],
+      }));
+    }
   }, 3000);
 
   render() {
@@ -99,7 +132,7 @@ class RSPGameApp extends React.Component {
           />
         ))}
         {weaponPlayerOne !== undefined && weaponPlayerTwo !== undefined && (
-          <button onClick={this.handleCountScore}>Run</button>
+          <button onClick={this.handleCountScore}>Run Winner</button>
         )}
         <h1>tes{this.handleFinalWinner()}</h1>
       </div>
