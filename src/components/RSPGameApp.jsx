@@ -27,12 +27,6 @@ class RSPGameApp extends React.Component {
     });
   };
 
-  timer = setTimeout(() => {
-    this.setState(() => ({
-      weaponPlayerOne: weapons[Math.floor(Math.random() * weapons.length)],
-    }));
-  }, 3000);
-
   handleCountScore = () => {
     const { weaponPlayerOne, weaponPlayerTwo } = this.state;
 
@@ -66,6 +60,13 @@ class RSPGameApp extends React.Component {
     }
   };
 
+  timer = setTimeout(() => {
+    this.setState(() => ({
+      weaponPlayerOne: weapons[Math.floor(Math.random() * weapons.length)],
+      weaponPlayerTwo: weapons[Math.floor(Math.random() * weapons.length)],
+    }));
+  }, 3000);
+
   render() {
     const {
       weaponPlayerOne,
@@ -79,7 +80,6 @@ class RSPGameApp extends React.Component {
         {/* Player One */}
         <Header playerName={this.props.playerName} totalWin={scorePlayerOne} />
         <PlayerImage image={weaponPlayerOne} />
-
         {weapons.map((weapon) => (
           <Choice
             key={weapon}
