@@ -3,7 +3,6 @@ import Header from "./Header.jsx";
 import PlayerImage from "./PlayerImage.jsx";
 import Choice from "./Choice.jsx";
 import ResultModal from "./ResultModal.jsx";
-import WinnerModal from "./WinnerModal.jsx";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -18,7 +17,6 @@ class RSPGameApp extends React.Component {
     scoreP1: 0,
     scoreP2: 0,
     message: "",
-    winner: "",
     modalIsOpen: false,
     setIsOpen: false,
   };
@@ -86,14 +84,14 @@ class RSPGameApp extends React.Component {
       (weaponP1 === "paper" && weaponP2 === "rock")
     ) {
       this.setState(() => ({
-        message: "Player One Win",
+        message: "Player One Win!",
       }));
       this.setState((prevCount) => ({
         scoreP1: prevCount.scoreP1 + 1,
       }));
     } else {
       this.setState(() => ({
-        message: "Player Two Win",
+        message: "Player Two Win!",
       }));
       this.setState((prevCount) => ({
         scoreP2: prevCount.scoreP2 + 1,
@@ -137,12 +135,14 @@ class RSPGameApp extends React.Component {
 
     if (countP1 === 3) {
       this.setState(() => ({
-        winner: "Player One Win Game",
+        message: "Player One Win Game",
       }));
+      this.handlePlayAgain();
     } else if (countP2 === 3) {
       this.setState(() => ({
-        winner: "Player Two Win The Game",
+        message: "Player Two Win The Game",
       }));
+      this.handlePlayAgain();
     }
 
     if (count === 5 || countP1 === 3 || countP1 === 3) {
@@ -158,8 +158,6 @@ class RSPGameApp extends React.Component {
       weaponResultP2: undefined,
       scoreP1: 0,
       scoreP2: 0,
-      message: "",
-      winner: "",
     }));
 
     setTimeout(() => {
@@ -261,11 +259,6 @@ class RSPGameApp extends React.Component {
           weaponChoiceP2={weaponResultP2}
           handleCloseModal={this.handleCloseModal}
         />
-        {/* <WinnerModal
-          message={this.state.message}
-          winner={this.state.winner}
-          handlePlayAgain={this.handlePlayAgain}
-        /> */}
       </div>
     );
   }

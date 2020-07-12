@@ -20,7 +20,7 @@ class ResultModal extends React.Component {
         <div>
           <Grid container spacing={1}>
             <Grid container item xs={12} justify="center" spacing={1}>
-              <h1>{this.props.message}</h1>
+              <h1 className="modal__result">{this.props.message}</h1>
             </Grid>
           </Grid>
           <Grid container spacing={1}>

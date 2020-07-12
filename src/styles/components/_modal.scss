@@ -29,10 +29,11 @@
 
 .text-button {
   cursor: pointer;
+  color: $soft-pink;
 }
 
-.modal__title {
-  margin: 0 0 $s-size 0;
+.modal__result {
+  color: $soft-pink;
 }
 
 .modal__body {
