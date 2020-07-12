@@ -3,6 +3,7 @@ import Header from "./Header.jsx";
 import PlayerImage from "./PlayerImage.jsx";
 import Choice from "./Choice.jsx";
 import ResultModal from "./ResultModal.jsx";
+import WinnerModal from "./WinnerModal.jsx";
 
 const weapons = ["rock", "scissors", "paper"];
 
@@ -54,18 +55,24 @@ class RSPGameApp extends React.Component {
     const { weaponP1, weaponP2 } = this.state;
 
     if (weaponP1 === weaponP2) {
-      console.log("Oops it's a Tie!");
+      this.setState(() => ({
+        message: "Oops it's a Tie!",
+      }));
     } else if (
       (weaponP1 === "rock" && weaponP2 === "scissors") ||
       (weaponP1 === "scissors" && weaponP2 === "paper") ||
       (weaponP1 === "paper" && weaponP2 === "rock")
     ) {
-      console.log("Player One Win");
+      this.setState(() => ({
+        message: "Player One Win",
+      }));
       this.setState((prevCount) => ({
         scoreP1: prevCount.scoreP1 + 1,
       }));
     } else {
-      console.log("Player Two Win");
+      this.setState(() => ({
+        message: "Player Two Win",
+      }));
       this.setState((prevCount) => ({
         scoreP2: prevCount.scoreP2 + 1,
       }));
@@ -176,6 +183,7 @@ class RSPGameApp extends React.Component {
         {weaponP1 !== undefined && weaponP2 !== undefined && (
           <button onClick={this.handleLoadingGame}>Run Winner</button>
         )}
+        <WinnerModal message={this.state.message} />
         <ResultModal
           weaponChoiceP1={weaponResultP1}
           weaponChoiceP2={weaponResultP2}
